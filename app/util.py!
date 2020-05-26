@@ -1,0 +1,21 @@
+def unique_languages(countries):
+    """
+    Return a list of unique languages from a list of countries.
+
+    Input:
+    - countries. A JSON list of countries, response from restcoutries.eu.
+
+    Returns:
+    - A unique list of languages in the following format:
+    TODO
+    """
+    uniq_languages = {}
+
+    for country in countries:
+        country_languages = country['languages']
+
+        for lang in country_languages:
+            if lang['iso639_2'] not in uniq_languages:
+                uniq_languages['iso639_2'] = lang
+
+    return uniq_languages

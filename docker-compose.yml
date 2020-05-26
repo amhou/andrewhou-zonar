@@ -1,0 +1,24 @@
+---
+
+version: '3'
+
+services:
+  base:
+    build: .
+
+  language_app:
+    # docker-compose throws an error trying to pull the local image from remote
+    # This error can be safely ignored.
+    #
+    # https://github.com/docker/compose/issues/6668
+    image: andrewhou-zonar_base:latest
+    command: ["/start-reload.sh"]
+    volumes: &std_volumes
+      - "./app:/app"
+    ports:
+      - '80:80'
+
+  shell:
+    image: andrewhou-zonar_base:latest
+    command: ["/bin/bash"]
+    volumes: *std_volumes
